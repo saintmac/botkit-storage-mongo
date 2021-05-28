@@ -17,7 +17,8 @@ describe('Mongo', function() {
         collectionObj = {
             find: sinon.stub(),
             findOne: sinon.stub(),
-            findAndModify: sinon.stub()
+            findOneAndUpdate: sinon.stub(),
+            findOneAndDelete: sinon.stub(),
         };
 
         collectionMock = {
@@ -57,15 +58,15 @@ describe('Mongo', function() {
 
         describe(method + '.save', function() {
 
-            it('should call findAndModify', function() {
+            it('should call findOneAndUpdate', function() {
                 var data = {id: 'walterwhite'},
                     cb = sinon.stub();
 
                 Storage(config)[method].save(data, cb);
-                collectionObj.findAndModify.should.be.calledWith(
+                collectionObj.findOneAndUpdate.should.be.calledWith(
                     {id: 'walterwhite'},
                     data,
-                    {upsert: true, 'new': true},
+                    {upsert: true, 'returnNewDocument': true},
                     cb
                 );
             });
@@ -78,6 +79,17 @@ describe('Mongo', function() {
 
                 Storage(config)[method].all(cb);
                 collectionObj.find.should.be.calledWith({}, cb);
+            });
+        });
+
+        describe(method + '.delete', function() {
+
+            it('should call findOneAndDelete', function() {
+                var id = 'walterwhite',
+                    cb = sinon.stub();
+
+                Storage(config)[method].delete(id, cb);
+                collectionObj.findOneAndDelete.should.be.calledWith({id: 'walterwhite'}, cb);
             });
         });
     });
