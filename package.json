@@ -1,11 +1,10 @@
 {
   "name": "botkit-storage-mongo",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "A MongoDB storage driver for Botkit",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "pretest": "jscs ./",
     "test": "istanbul cover --report lcov --dir coverage/ _mocha ./tests --grep ./tests/*.js -- --colors"
   },
   "repository": {
@@ -24,15 +23,14 @@
   },
   "homepage": "https://github.com/howdyai/botkit-storage-mongo#readme",
   "dependencies": {
-    "monk": "3.1.4"
+    "monk": "7.3.4"
   },
   "devDependencies": {
-    "istanbul": "^0.4.2",
-    "jscs": "^2.8.0",
-    "mocha": "^2.3.4",
-    "proxyquire": "^1.7.3",
-    "should": "^8.1.1",
-    "should-sinon": "0.0.3",
-    "sinon": "^1.17.2"
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "proxyquire": "^2.1.0",
+    "should": "^13.2.3",
+    "should-sinon": "0.0.6",
+    "sinon": "^7.1.1"
   }
 }
